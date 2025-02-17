@@ -3,11 +3,29 @@ const mysql = require("mysql");
 const app = express();
 const cors = require("cors");
 const bodyparser = require("body-parser");
+const { request } = require("http");
 app.use(cors());
 app.use(bodyparser.json());
 
+const db = mysql.createConnection(
+    {
+        user: "root",
+        host: "localhost",
+        port: 3307,
+        password: "root",
+        database: "teliolimpia"
+    }
+)
+
+// a szerver futásának ellenőrzése
+
+app.get("/", (req,res)  => {
+    res.send("A szerver működik !")
+}
+
+)
 
 app.listen(3000, () => {
-    console.log('A szerver a 3000 porton futR')
+    console.log('A szerver a 3000 porton fut!')
 })
 
